@@ -3,7 +3,7 @@ module MessageDialog
     puts "【追加】 [No.#{task.id}] #{task.title}:#{task.content}"
   end
 
-  def no_display_task_msg
+  def display_no_task_msg
     puts "【！】 タスクはありません。"
   end
 
@@ -19,7 +19,7 @@ module MessageDialog
     puts "*=*=*=*=*=*=*=*=*=*=*=**=*=*=*=*=*=*=*=*"
   end
 
-  def no_delete_task_msg
+  def delete_no_task_msg
     puts "【！】 該当idのタスクはありません。"
   end
 

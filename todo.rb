@@ -8,6 +8,7 @@ class ToDo
   end
 
   def add(task)
+    #タスクにIDを自動採番
     task.add_count
     @tasks.push(task)
     add_task_msg(task)
@@ -15,7 +16,7 @@ class ToDo
 
   def info
     if @tasks.empty?
-      no_display_task_msg
+      display_no_task_msg
     else
       display_header_msg
 
@@ -31,6 +32,7 @@ class ToDo
     #削除対象のタスクを格納する変数の初期化
     @delete_task = nil
 
+    #削除対象のタスクが存在するかの確認
     ckeck_taget_task_being
 
     exec_delete_task
@@ -52,7 +54,7 @@ class ToDo
 
   def exec_delete_task
     if @delete_task.nil?
-      no_delete_task_msg
+      delete_no_task_msg
     else
       @tasks.delete(@delete_task)
       delete_task_msg
