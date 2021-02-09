@@ -3,6 +3,10 @@ require_relative "message_dialog.rb"
 class ToDo
   include MessageDialog
 
+  ADD_TASK_MSG = "【追加】"
+  DISPLAY_TASK_MSG = ""
+  DELETE_TASK_MSG = "【削除】"
+
   def initialize
     @tasks = []
   end
@@ -11,53 +15,47 @@ class ToDo
     #タスクにIDを自動採番
     task.add_count
     @tasks.push(task)
-    add_task_msg(task)
+    diplay_action_msg(action_info: ADD_TASK_MSG, task_info: task)
   end
 
   def info
     if @tasks.empty?
       display_no_task_msg
     else
-      display_header_msg
+      puts "*=*=*=*=*=*=*=*=* task *=*=*=*=*=*=*=*=*"
 
       display_task_info
 
-      display_footer_msg
+      puts "*=*=*=*=*=*=*=*=*=*=*=**=*=*=*=*=*=*=*=*"
     end
   end
 
   def delete(**params)
-    @id = params[:id]
+    id = params[:id]
 
-    #削除対象のタスクを格納する変数の初期化
-    @delete_task = nil
+    delete_task = check_taget_task_exists(id)
 
-    #削除対象のタスクが存在するかの確認
-    ckeck_taget_task_being
-
-    exec_delete_task
+    exec_delete_task(delete_task)
   end
 
   private
 
   def display_task_info
     @tasks.each do |task|
-      display_task_msg(task)
+      diplay_action_msg(action_info: DISPLAY_TASK_MSG, task_info: task)
     end
   end
 
-  def ckeck_taget_task_being
-    @tasks.each do |task|
-      @delete_task = task if task.id == @id
-    end
+  def check_taget_task_exists(id)
+    @tasks.find{|task| task.id == id}
   end
 
-  def exec_delete_task
-    if @delete_task.nil?
+  def exec_delete_task(delete_task)
+    if delete_task.nil?
       delete_no_task_msg
     else
-      @tasks.delete(@delete_task)
-      delete_task_msg
+      @tasks.delete(delete_task)
+      diplay_action_msg(action_info: DELETE_TASK_MSG, task_info: delete_task)
     end
   end
 end

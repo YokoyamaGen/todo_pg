@@ -1,29 +1,15 @@
 module MessageDialog
-  def add_task_msg(task)
-    puts "【追加】 [No.#{task.id}] #{task.title}:#{task.content}"
+  def diplay_action_msg(**params)
+    action_info = params[:action_info]
+    task = params[:task_info]
+    puts "#{action_info}[No.#{task.id}] #{task.title}:#{task.content}"
   end
 
   def display_no_task_msg
     puts "【！】 タスクはありません。"
   end
 
-  def display_header_msg
-    puts "*=*=*=*=*=*=*=*=* task *=*=*=*=*=*=*=*=*"
-  end
-
-  def display_task_msg(task)
-    puts "[No.#{task.id}] #{task.title}:#{task.content}"
-  end
-
-  def display_footer_msg
-    puts "*=*=*=*=*=*=*=*=*=*=*=**=*=*=*=*=*=*=*=*"
-  end
-
   def delete_no_task_msg
     puts "【！】 該当idのタスクはありません。"
-  end
-
-  def delete_task_msg
-    puts "【削除】 [No.#{@delete_task.id}] #{@delete_task.title}:#{@delete_task.content}"
   end
 end
