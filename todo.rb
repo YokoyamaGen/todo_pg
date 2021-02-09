@@ -3,10 +3,6 @@ require_relative "message_dialog.rb"
 class ToDo
   include MessageDialog
 
-  ADD_TASK_MSG = "【追加】"
-  DISPLAY_TASK_MSG = ""
-  DELETE_TASK_MSG = "【削除】"
-
   def initialize
     @tasks = []
   end
@@ -47,7 +43,7 @@ class ToDo
   end
 
   def check_taget_task_exists(id)
-    @tasks.find{|task| task.id == id}
+    @tasks.find { |task| task.id == id }
   end
 
   def exec_delete_task(delete_task)

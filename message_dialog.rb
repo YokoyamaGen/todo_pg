@@ -1,4 +1,8 @@
 module MessageDialog
+  ADD_TASK_MSG = "【追加】"
+  DISPLAY_TASK_MSG = ""
+  DELETE_TASK_MSG = "【削除】"
+
   def diplay_action_msg(**params)
     action_info = params[:action_info]
     task = params[:task_info]
